@@ -28,7 +28,7 @@
       <td>
         <a class="btn btn-sm btn-outline-secondary" href="{% url 'expenses:expense_detail' e.pk %}">View</a>
         <a class="btn btn-sm btn-outline-primary" href="{% url 'expenses:edit_expense' e.pk %}">Edit</a>
-        <a class="btn btn-sm btn-outline-primary" href="{% url 'expenses:expense_detail' e.pk %}">Delete</a>
+        <a class="btn btn-sm btn-outline-danger" href="{% url 'expenses:expense_detail' e.pk %}">Delete</a>
       </td>
     </tr>
     {% empty %}

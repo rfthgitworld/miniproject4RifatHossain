@@ -47,6 +47,7 @@
                     data-notes="{{ e.notes|default:'' }}">
               Edit
             </button>
+           <a class="btn btn-sm btn-outline-danger" href="{% url 'expenses:expense_detail' e.pk %}">Delete</a>
           </td>
         </tr>
         {% empty %}
