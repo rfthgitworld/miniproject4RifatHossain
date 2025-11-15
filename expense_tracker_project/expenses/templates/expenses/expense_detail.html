@@ -3,11 +3,33 @@
 
 {% block content %}
 <h2>{{ expense.title }}</h2>
+
 <ul class="list-group">
-  <li class="list-group-item"><strong>Amount:</strong> ${{ expense.amount }}</li>
-  <li class="list-group-item"><strong>Category:</strong> {{ expense.category.name if expense.category }}</li>
-  <li class="list-group-item"><strong>Date:</strong> {{ expense.date }}</li>
-  <li class="list-group-item"><strong>Notes:</strong> {{ expense.notes }}</li>
+  <li class="list-group-item">
+    <strong>Amount:</strong> ${{ expense.amount }}
+  </li>
+
+  <li class="list-group-item">
+    <strong>Category:</strong>
+    {% if expense.category %}
+        {{ expense.category.name }}
+    {% else %}
+        No Category
+    {% endif %}
+  </li>
+
+  <li class="list-group-item">
+    <strong>Date:</strong> {{ expense.date }}
+  </li>
+
+  <li class="list-group-item">
+    <strong>Notes:</strong>
+    {% if expense.notes %}
+        {{ expense.notes }}
+    {% else %}
+        No notes
+    {% endif %}
+  </li>
 </ul>
 
 <form method="post" action="{% url 'expenses:delete_expense' expense.pk %}" class="mt-3">
