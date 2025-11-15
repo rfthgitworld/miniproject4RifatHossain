@@ -1,0 +1,41 @@
+{% extends 'expenses/base.html' %}
+{% block title %}{% if edit_mode %}Edit Expense{% else %}Add Expense{% endif %}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h2>{% if edit_mode %}Edit Expense{% else %}Add Expense{% endif %}</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="mb-3">
+        {{ form.title.label_tag }}
+        {{ form.title }}
+        {{ form.title.errors }}
+      </div>
+      <div class="mb-3">
+        {{ form.amount.label_tag }}
+        {{ form.amount }}
+        {{ form.amount.errors }}
+      </div>
+      <div class="mb-3">
+        {{ form.date.label_tag }}
+        {{ form.date }}
+        {{ form.date.errors }}
+      </div>
+      <div class="mb-3">
+        {{ form.category.label_tag }}
+        {{ form.category }}
+        {{ form.category.errors }}
+        <div class="form-text">Categories are user-specific. Add a category from Categories page or from dashboard modal.</div>
+      </div>
+      <div class="mb-3">
+        {{ form.notes.label_tag }}
+        {{ form.notes }}
+        {{ form.notes.errors }}
+      </div>
+      <button class="btn btn-primary" type="submit">{% if edit_mode %}Save Changes{% else %}Add Expense{% endif %}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

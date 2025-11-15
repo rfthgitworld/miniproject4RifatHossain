@@ -1,0 +1,22 @@
+{% extends 'expenses/base.html' %}
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+  <h2>Categories</h2>
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Add Category</button>
+</div>
+
+<ul class="list-group mt-3">
+  {% for c in categories %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ c.name }}
+      <span class="badge bg-secondary">{{ c.expenses.count }}</span>
+    </li>
+  {% empty %}
+    <li class="list-group-item">No categories yet.</li>
+  {% endfor %}
+</ul>
+
+{% include 'expenses/includes/modals/add_category_modal.html' %}
+{% endblock %}

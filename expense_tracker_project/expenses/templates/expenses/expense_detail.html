@@ -1,0 +1,19 @@
+{% extends 'expenses/base.html' %}
+{% block title %}Expense Detail{% endblock %}
+
+{% block content %}
+<h2>{{ expense.title }}</h2>
+<ul class="list-group">
+  <li class="list-group-item"><strong>Amount:</strong> ${{ expense.amount }}</li>
+  <li class="list-group-item"><strong>Category:</strong> {{ expense.category.name if expense.category }}</li>
+  <li class="list-group-item"><strong>Date:</strong> {{ expense.date }}</li>
+  <li class="list-group-item"><strong>Notes:</strong> {{ expense.notes }}</li>
+</ul>
+
+<form method="post" action="{% url 'expenses:delete_expense' expense.pk %}" class="mt-3">
+  {% csrf_token %}
+  <a href="{% url 'expenses:edit_expense' expense.pk %}" class="btn btn-primary">Edit</a>
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+{% endblock %}
