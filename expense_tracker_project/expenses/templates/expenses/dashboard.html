@@ -1,0 +1,53 @@
+{% extends 'expenses/base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Total Spent</h5>
+        <p class="card-text fs-4">${{ total }}</p>
+        <a href="{% url 'expenses:add_expense' %}" class="btn btn-primary">Add Expense</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Quick Actions</h5>
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Add Category</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <h4>Recent Expenses</h4>
+    <table class="table table-striped">
+      <thead><tr><th>Title</th><th>Category</th><th>Amount</th><th>Date</th><th></th></tr></thead>
+      <tbody>
+        {% for e in recent %}
+        <tr>
+          <td>{{ e.title }}</td>
+          <td>{{ e.category.name if e.category }}</td>
+          <td>${{ e.amount }}</td>
+          <td>{{ e.date }}</td>
+          <td>
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'expenses:expense_detail' e.pk %}">View</a>
+            <button class="btn btn-sm btn-outline-primary edit-expense-btn" 
+                    data-id="{{ e.pk }}" 
+                    data-title="{{ e.title }}" 
+                    data-amount="{{ e.amount }}" 
+                    data-date="{{ e.date }}" 
+                    data-notes="{{ e.notes|default:'' }}">Edit</button>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No expenses yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% include 'expenses/includes/modals/add_category_modal.html' %}
+{% include 'expenses/includes/modals/edit_expense_modal.html' %}
+{% endblock %}
