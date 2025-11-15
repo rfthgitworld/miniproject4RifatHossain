@@ -1,0 +1,14 @@
+{% extends 'expenses/base.html' %}
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+<div class="p-4 bg-light rounded text-center">
+    <h2>Logout</h2>
+    <p>Are you sure you want to logout?</p>
+    <form action="{% url 'expenses:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, Logout</button>
+        <a href="{% url 'expenses:dashboard' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

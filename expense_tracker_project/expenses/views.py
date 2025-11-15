@@ -31,6 +31,11 @@ class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('expenses:home')
 
 @login_required
+def logout_confirm(request):
+    return render(request, 'expenses/logout.html')
+
+
+@login_required
 def dashboard(request):
     # quick stats
     total = Expense.objects.filter(user=request.user).aggregate(total=Sum('amount'))['total'] or 0
