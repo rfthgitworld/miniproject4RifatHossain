@@ -1,0 +1,26 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'expenses:home' %}">ExpenseTracker</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navCollapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'expenses:dashboard' %}">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'expenses:expense_list' %}">Expenses</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'expenses:add_expense' %}">Add Expense</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'expenses:category_list' %}">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'expenses:logout' %}">Logout</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'expenses:login' %}">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'expenses:register' %}">Register</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

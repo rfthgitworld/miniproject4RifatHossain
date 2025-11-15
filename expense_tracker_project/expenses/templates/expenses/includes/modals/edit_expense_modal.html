@@ -1,0 +1,38 @@
+<!-- Edit Expense Modal (requires JS to populate fields) -->
+<div class="modal fade" id="editExpenseModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- The form will be filled/populated by JS when the user clicks "Edit" -->
+      <form id="editExpenseForm" method="post">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Expense</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="expense_id" id="edit-expense-id">
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input id="edit-title" name="title" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Amount</label>
+            <input id="edit-amount" name="amount" class="form-control" step="0.01" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input id="edit-date" name="date" class="form-control" type="date" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <textarea id="edit-notes" name="notes" class="form-control" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
